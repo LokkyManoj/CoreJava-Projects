@@ -14,11 +14,11 @@ public interface ToDoListManager1 {
 	void addTask(ToDoItem1 todo) throws SQLException;
 
 	void addTask1(String managerUsername, String managerPassword, int taskId, String task, Date dueDate,
-			String employeeName,int empID) throws SQLException;
+			String employeeName,int empID,int prior) throws SQLException;
 
 	void deleteTask(int taskId) throws SQLException;
 
-	void updateTask(int taskId, String newTask, Date newDueDate, String newEmployeeName,int empID) throws SQLException;
+	void updateTask(int taskId, String newTask, Date newDueDate, String newEmployeeName,int empID,int prior) throws SQLException;
 
 	List<ToDoItem1> getTasksForEmployee(String employeeName,int empID) throws SQLException;
 

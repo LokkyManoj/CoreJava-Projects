@@ -10,6 +10,15 @@ public class ToDoItem1 {
 	public String task;
 	public Date dueDate;
 	public int empID;
+	public int priority;
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public void setPriority(int priority) {
+		this.priority = priority;
+	}
 
 	public int getEmpID() {
 		return empID;
@@ -71,6 +80,6 @@ public class ToDoItem1 {
 	public String toString() {
 		return "ToDoItem1 [managerUsername=" + managerUsername + ", managerPassword=" + managerPassword
 				+ ", employeeName=" + employeeName + ", taskId=" + taskId + ", task=" + task + ", dueDate=" + dueDate
-				+ ", empID=" + empID + "]";
+				+ ", empID=" + empID + ", priority=" + priority + "]";
 	}
 }

@@ -108,13 +108,18 @@ public class ToDoListMain1 {
 		while (!validate.inputchecker(task1.getTaskId())) {
 			task1.setTaskId(scanner.nextInt());
 		}
+		
+		
 
 		System.out.print("Enter Task for Employee: ");
 		task1.setTask(scanner.nextLine());
 		while (!validate.numberchecker(task1.getTask())) {
 			task1.setTask(scanner.next());
 		}
-
+		
+		System.out.print("Enter a Priority of Task:");
+		task1.setPriority(scanner.nextInt());
+		scanner.nextLine();
 //		System.out.print("Enter due date (YYYY-MM-DD): ");
 //		String dueDateStr = scanner.nextLine();
 //		try {
@@ -144,7 +149,7 @@ public class ToDoListMain1 {
 
 		if (manager.signUp(managerUsername, managerPassword)) {
 			manager.addTask1(managerUsername, managerPassword, task1.getTaskId(), task1.getTask(), task1.getDueDate(),
-					task1.getEmployeeName(),task1.getEmpID());
+					task1.getEmployeeName(),task1.getEmpID(),task1.getPriority());
 
 		}
 	}
@@ -226,6 +231,11 @@ public class ToDoListMain1 {
 		while (!validate.numberchecker(todo.getTask())) {
 			todo.setTask(scanner.nextLine());
 		}
+		
+		System.out.print("Enter a Priority of Task:");
+		int prior=scanner.nextInt();
+		todo.setPriority(prior);
+		scanner.nextLine();
 
 //        System.out.print("Enter due date (YYYY-MM-DD): ");
 //        String dueDateStr = scanner.nextLine();
@@ -244,6 +254,8 @@ public class ToDoListMain1 {
 				System.out.print("Please enter a valid due date (YYYY-MM-DD): ");
 				dueDateStr = dateFormat1.parse(scanner.nextLine());
 			}
+		    todo.setDueDate(dueDateStr); 
+
 		} catch (ParseException e) {
 			System.out.println("Invalid date format. Please enter the date in the format YYYY-MM-DD.");
 		}
@@ -255,7 +267,16 @@ public class ToDoListMain1 {
 		}
 
 		todo.setEmployeeName(employeeName);
+		System.out.print("Enter a Employee ID: ");
+		int empID=scanner.nextInt();
+		todo.setEmpID(empID);
+		
+		
 		manager.addTask(todo);
+		
+		System.out.println("Want to Add a Tasks? (Yes/No)");
+		
+		
 	}
 
 	static void deleteTask(Scanner scanner, ToDoListManager1 manager) throws SQLException {
@@ -287,6 +308,10 @@ public class ToDoListMain1 {
 		while (!validate.numberchecker(newTask)) {
 			newTask = scanner.nextLine();
 		}
+		
+		System.out.println("Enter a priority of task: ");
+		int newPrior=scanner.nextInt();
+		scanner.nextLine();
 
 //        System.out.print("Enter new due date (YYYY-MM-DD): ");
 //        Date newDueDate = dateFormat.parse(scanner.nextLine());
@@ -315,7 +340,7 @@ public class ToDoListMain1 {
 		System.out.println("Enter new employee id: ");
 		int newEmpID=scanner.nextInt();
 
-		manager.updateTask(taskId, newTask, newDueDate, newEmployeeName,newEmpID);
+		manager.updateTask(taskId, newTask, newDueDate, newEmployeeName,newEmpID,newPrior);
 	}
 
 	static void employeeLogin(Scanner scanner, ToDoListManager1 manager) throws SQLException {
@@ -330,6 +355,7 @@ public class ToDoListMain1 {
 		
 		System.out.println("Enter employee id: ");
 		int empID=scanner.nextInt();
+		scanner.nextLine();
 
 		System.out.print("Enter your Manager Name:");
 		String managerUsername = scanner.nextLine();
@@ -343,7 +369,6 @@ public class ToDoListMain1 {
 		System.out.print("Enter that the taskid is Completed or not: ");
 		String taskId = scanner.nextLine();
 
-		// Call isActive method to update the task status
 		manager.isActive(managerUsername, taskId);
 	}
 }
